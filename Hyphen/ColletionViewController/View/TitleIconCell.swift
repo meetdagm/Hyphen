@@ -23,7 +23,7 @@ class TitleIconCell: UICollectionViewCell {
        
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .clear
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -50,7 +50,7 @@ class TitleIconCell: UICollectionViewCell {
         iconImageView.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
         
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 6.0).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9.0).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         

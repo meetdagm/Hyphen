@@ -29,4 +29,17 @@ struct CellSizeFactory {
         })
     }
     
+    static var vSettingCell: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            print("CollectionView height for static: ", collectionView.frame.width)
+            return CGSize(width: collectionView.frame.width, height: 55)
+        })
+    }
+    
+    static var vMessagePreviewCell: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return CGSize(width: collectionView.frame.width, height: 60)
+        })
+    }
+    
 }

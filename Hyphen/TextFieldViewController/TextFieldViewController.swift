@@ -32,6 +32,10 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate {
         accessoryIcon.image = icon
     }
     
+    convenience init() {
+        self.init(withIcon: UIImage())
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

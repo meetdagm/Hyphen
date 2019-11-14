@@ -41,6 +41,7 @@ class TitleCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .lightGray
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()

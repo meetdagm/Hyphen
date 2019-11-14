@@ -33,7 +33,7 @@ class HotelDetailFactory: DetailFactory {
         let descriptionController = StackViewController(withChildrenVC:[descriptionTitleController, descriptionDetailController])
         let cardViewController = CardViewController(withChildController: descriptionController)
 
-        let amentiesCollectionView = CollectionViewController(withCollectionModel: hotelCollection, usingCellRenderer: TitleIconCellRenderer(), inScrollingDirection: .vertical)
+        let amentiesCollectionView = CollectionViewController(withCollectionModel: hotelCollection, usingCellRenderer: TitleIconCellRenderer(), usingCollectionView: CollectionViewFactory.getNormalCollectionView(inDirection: .vertical))
         amentiesCollectionView.cellDimensionCalculator = CellSizeFactory.vDynamicCell
         amentiesCollectionView.spacingBetweenItems = 0
         

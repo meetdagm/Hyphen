@@ -23,6 +23,4 @@ class Hotel: Image {
         self.backgroundImageName = backgroundImageName
     }
     
-    
-    
 }

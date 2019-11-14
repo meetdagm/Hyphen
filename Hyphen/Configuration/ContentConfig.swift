@@ -33,10 +33,19 @@ enum IconConfig {
     static let date                         = "Calendar"
     static let car                          = "car"
     static let location                     = "location"
+    static let wifiSymbol                   = "wifi"
+    static let monitor                      = "monitor"
+    static let moreArrow                    = "blackMoreArrow"
+    static let serviceType                  = "shopping_cart"
+    static let notes                        = "notes"
+    static let binary                       = "openClosed"
+    static let brand                        = "tagLabel"
+    static let VIN                          = "VIN"
 }
 
 enum ColorConfig {
     static let lightGray = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
     static let GrayText = UIColor(red: 175/255, green: 175/255, blue: 175/255, alpha: 1.0)
+    static let blue     = UIColor(red: 0/255, green: 136/255, blue: 255/255, alpha: 1.0)
     
 }

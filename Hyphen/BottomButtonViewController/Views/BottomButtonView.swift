@@ -35,6 +35,7 @@ class BottomButtonView: UIView {
         button.setTitle("Title", for: .normal)
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: FontConfig.medium, size: 16)
         
         return button
     }()

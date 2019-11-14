@@ -10,7 +10,7 @@ import Foundation
 
 class DefaultCollectionModel: CollectionModel {
     
-    private var itemAmount = 9
+    private var itemAmount = 2
     
     var numberOfItems: Int {
         return itemAmount 

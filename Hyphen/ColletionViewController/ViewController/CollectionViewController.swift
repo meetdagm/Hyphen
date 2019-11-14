@@ -26,10 +26,10 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
-    init(withCollectionModel model: CollectionModel, usingCellRenderer renderer: CellRenderer, inScrollingDirection direction: UICollectionView.ScrollDirection = .horizontal) {
+    init(withCollectionModel model: CollectionModel, usingCellRenderer renderer: CellRenderer, usingCollectionView collectionView: UICollectionView = CollectionViewFactory.getNormalCollectionView()) {
         collectionModel = model
         cellRenderer = renderer
-        mainView = CollectionView(withDirection: direction)
+        mainView = CollectionView(usingView: collectionView)
         super.init(nibName: nil, bundle: nil)
     }
     

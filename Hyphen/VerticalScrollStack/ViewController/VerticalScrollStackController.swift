@@ -13,6 +13,11 @@ class VerticalScrollStackController: UIViewController {
     
     let mainView = VerticalScrollStackView()
     let childVCS: [UIViewController]
+    var inset: UIEdgeInsets = .zero {
+        didSet {
+            mainView.margins = inset
+        }
+    }
     
     init(withChildControllers childVCs: [UIViewController]) {
         self.childVCS = childVCs

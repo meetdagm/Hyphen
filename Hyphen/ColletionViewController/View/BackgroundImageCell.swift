@@ -33,7 +33,7 @@ class BackgroundImageCell: UICollectionViewCell, Shadowable {
        
         let view = UIView()
         view.backgroundColor = .clear
-        view.layer.cornerRadius = 6.0
+        view.layer.cornerRadius = 2.0
         view.layer.masksToBounds = true
         
         return view

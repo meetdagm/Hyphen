@@ -49,4 +49,26 @@ class CardView: UIView, Shadowable {
     }
 }
 
+class CardViewCell: UICollectionViewCell {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let cardView = CardView()
+    
+    func setupView() {
+        embedView(cardView, usingEdgeInset: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 6.0))
+    }
+    
+    func addToCard(_ view: UIView) {
+        cardView.addSubview(view)
+    }
+    
+}
 

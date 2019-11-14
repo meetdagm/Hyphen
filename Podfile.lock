@@ -1,16 +1,20 @@
 PODS:
   - Mapbox-iOS-SDK (5.2.0)
+  - Parchment (1.6.0)
 
 DEPENDENCIES:
   - Mapbox-iOS-SDK (~> 5.1)
+  - Parchment
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Mapbox-iOS-SDK
+    - Parchment
 
 SPEC CHECKSUMS:
   Mapbox-iOS-SDK: 3e095b305126d52ba166fe215d847b15b6fbee63
+  Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
 
-PODFILE CHECKSUM: 80cf3425cea5bebef7e8a0b960d0b878ae47f2e3
+PODFILE CHECKSUM: b3a189456a8a8999f9a3e2337c9691273d4ed67e
 
 COCOAPODS: 1.7.5

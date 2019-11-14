@@ -11,10 +11,10 @@ import UIKit
 class CollectionView: UIView {
     
     private(set) var cellID = ""
-    private let scrollDirection: UICollectionView.ScrollDirection
+    private let collectionView: UICollectionView
     
-    init(withDirection direction: UICollectionView.ScrollDirection) {
-        scrollDirection = direction
+    init(usingView view: UICollectionView) {
+        collectionView = view 
         super.init(frame: .zero)
         setupView()
     }
@@ -40,21 +40,7 @@ class CollectionView: UIView {
             collectionView.dataSource = collectionDatasource
         }
     }
-    
-    
-    lazy var collectionView: UICollectionView = {
        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = scrollDirection
-        let cv = DynamicCollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsHorizontalScrollIndicator = false
-        cv.showsVerticalScrollIndicator = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .clear
-        
-        return cv
-    }()
-    
     private func setupView() {
         backgroundColor = .clear
         embedView(collectionView)

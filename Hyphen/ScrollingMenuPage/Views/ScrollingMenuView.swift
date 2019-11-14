@@ -35,7 +35,6 @@ class ScrollingMenuView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,7 +79,7 @@ class ScrollingMenuView: UIView {
     }
     
     func scrollIndicatorToItem(atIndex index: Int) {
-        let leftAnchorConstant = CGFloat(index) * frame.width / 4 
+        let leftAnchorConstant = CGFloat(index) * frame.width / 3
         selectedTitleIndicatorLeftAnchor?.constant = leftAnchorConstant
         UIView.animate(withDuration: 0.35) { 
             self.layoutIfNeeded()

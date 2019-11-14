@@ -10,6 +10,12 @@ import UIKit
 
 class VerticalScrollStackView: UIView {
     
+    var margins: UIEdgeInsets = .zero {
+        didSet {
+            vStackView.layoutMargins = margins
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

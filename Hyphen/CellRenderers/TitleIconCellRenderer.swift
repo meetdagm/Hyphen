@@ -17,6 +17,7 @@ class TitleIconCellRenderer: CellRenderer {
     func cellForItem(atIndexPath indexPath: IndexPath, fromCollectionView collectionView: UICollectionView) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cellType), for: indexPath) as? TitleIconCell
         cell?.titleLabel.text = "Complimentary wifi"
+        cell?.iconImageView.image = UIImage(named: IconConfig.wifiSymbol)
         cell?.backgroundColor = .clear
         
         return cell!

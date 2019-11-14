@@ -12,6 +12,7 @@ class StackViewController: UIViewController {
     
     private let childrenVCs: [UIViewController]
     private let stackView = UIStackView()
+    var layoutMargins = UIEdgeInsets(top: 9.0, left: 36.0, bottom: 9.0, right: 18.0)
     
     init(withChildrenVC controllers: [UIViewController]) {
         childrenVCs = controllers
@@ -33,8 +34,9 @@ class StackViewController: UIViewController {
         stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 6.0, left: 36.0, bottom: 6.0, right: 18.0)
+        stackView.layoutMargins = layoutMargins
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 4
         view.embedView(stackView)
     }
     

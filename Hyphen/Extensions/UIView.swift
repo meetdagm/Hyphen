@@ -11,13 +11,13 @@ import UIKit
 
 extension UIView {
     
-    func embedView(_ view: UIView) {
+    func embedView(_ view: UIView, usingEdgeInset inset: UIEdgeInsets = .zero) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
-        view.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        view.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: topAnchor, constant: inset.top).isActive = true
+        view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset.bottom).isActive = true
+        view.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset.right).isActive = true
+        view.leftAnchor.constraint(equalTo: leftAnchor, constant: inset.left).isActive = true
     }
     
     

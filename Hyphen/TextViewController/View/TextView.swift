@@ -38,10 +38,13 @@ class TextView: UIView {
     }
     
     private lazy var textLabel: UILabel = {
+        
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = textColor
-        
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+            
         return label
     }()
     
