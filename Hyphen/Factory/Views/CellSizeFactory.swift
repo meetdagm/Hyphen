@@ -42,4 +42,10 @@ struct CellSizeFactory {
         })
     }
     
+    static var vBiddingPreviewCellSize: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return CGSize(width: collectionView.frame.width, height: 80)
+        })
+    }
+    
 }

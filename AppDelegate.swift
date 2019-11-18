@@ -89,12 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let roomsFilterController = SliderViewController(withTitle: "Number of rooms:", withMinValue: 1, withMaxValue: 10, withCurrentValue: 1, withSeparator: "up to ", incrementor: 1)
         
-//        let notesViewController = TextFieldViewController(withIcon: UIImage(named: IconConfig.notes)!)
-//        notesViewController.placeholder = "Additional notes"
+        let notesTextViewController = TextViewController()
+        notesTextViewController.setText("Notes")
+        notesTextViewController.setText(font: UIFont(name: FontConfig.demiBold, size: 16))
+        notesTextViewController.setText(color: .black)
         let notesViewController = ExpandableTextViewController(withPlaceholder: "Add additional notes")
-        let notesStack = StackViewController(withChildrenVC: [notesViewController])
+        let notesStack = StackViewController(withChildrenVC: [notesTextViewController, notesViewController])
         let notesCard = CardViewController(withChildController: notesStack)
-//        let priceFilterController = SliderViewController(withTitle: "Price:", withMinValue: 50, withMaxValue: 1000, withCurrentValue: 50, withSeparator: "up to $", incrementor: 10)
+
         
         let movingViewController = BottomButtonViewController(usingButtonTitle: "REQUEST QUOTE", withTopViewController: VerticalScrollStackController(withChildControllers: [movingLocationCardView, movingDateCard, serviceTypeCard, roomsFilterController, notesCard]))
 
@@ -125,9 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         carMakePickerView.placeholder = "All Models"
         let carMakeStack = StackViewController(withChildrenVC: [carMakePickerView])
         let carMakeCard = CardViewController(withChildController: carMakeStack)
-        
-//        
-//        let carMovingBudgetSlider = SliderViewController(withTitle: "Price: ", withMinValue: 300, withMaxValue: 3000, withCurrentValue: 400, withSeparator: "up to $", incrementor: 50)
+
             
         let upgradeTextView = ExpandableTextViewController(withPlaceholder: "List upgrades to the vehicle if any")
         let upgradeStack = StackViewController(withChildrenVC: [upgradeTextView])
@@ -151,13 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         carViewController.title = "Car"
         carViewController.view.backgroundColor = ColorConfig.lightGray
         
-//        let segmentedController = SegmentedViewController(withSegments: [movingViewController, carViewController])
-//        let movingScrollingPageViewController = ScrollingPageViewController(withViewControllers: [movingViewController, carViewController])
-//        
-//        movingScrollingPageViewController.scrollingDelegate = segmentedController
-//        segmentedController.selectionDelegate = movingScrollingPageViewController
-//        
-//        let vc4 = TopBarContainerViewController(withTopVC:segmentedController, withBottomVC:movingScrollingPageViewController)
         let vc4 = movingViewController
         
         vc4.title = "Moving"
@@ -167,12 +160,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc5.title = "Car Shipping"
         vc5.view.backgroundColor = .red
         
-//        let containerVC = ScrollingMenuPageViewController(withTitleControllers: [vc1, vc2, vc3, vc4, vc5]).controller
         let containerVC = CustomPagingViewController(withChildController: FixedPagingViewController(viewControllers: [vc1,vc2,vc3,vc4,vc5]))
         containerVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: IconConfig.feed), tag: 0)
         
-        let bidViewController = UIViewController()
-        bidViewController.view.backgroundColor = .red
+        let biddingPreviewController = CollectionViewController(withCollectionModel: DefaultCollectionModel(), usingCellRenderer: DefaultCellRenderer<BiddingPreviewCell>(), usingCollectionView: CollectionViewFactory.getNormalCollectionView(inDirection: .vertical))
+        biddingPreviewController.cellDimensionCalculator = CellSizeFactory.vBiddingPreviewCellSize
+        biddingPreviewController.spacingBetweenItems = 12
+        biddingPreviewController.insetForCollectionView = UIEdgeInsets(top: 10, left: 0, bottom: 20, right: 0)
+        let biddingStackController = VerticalScrollStackController(withChildControllers: [biddingPreviewController])
+        biddingStackController.inset = .zero
+        biddingStackController.title = "Quotes"
+        let bidNavigationController = NavigationControllerFactory.makeController(withRootController: biddingStackController)
+        
+        let bidViewController = bidNavigationController
+//        bidViewController.view.backgroundColor = .red
         bidViewController.tabBarItem = UITabBarItem(title: "Bids", image: UIImage(named: IconConfig.bid), tag: 1)
         
         let messagePreviewModel = ModelFactory.makeMessagePreviewList()

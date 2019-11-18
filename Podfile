@@ -8,4 +8,5 @@ target 'Hyphen' do
   # Pods for Hyphen
 	pod 'Mapbox-iOS-SDK', '~> 5.1'
 	pod 'Parchment'
+	pod 'Alamofire'
 end

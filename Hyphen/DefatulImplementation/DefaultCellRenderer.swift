@@ -9,15 +9,15 @@
 import UIKit
 
 
-class DefaultCellRenderer: CellRenderer {
+class DefaultCellRenderer<TestingCell: UICollectionViewCell>: CellRenderer {
     
     var cellType: UICollectionViewCell.Type {
-        return BackgroundImageCell.self
+        return TestingCell.self
     }
     
     func cellForItem(atIndexPath indexPath: IndexPath, fromCollectionView collectionView: UICollectionView) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cellType), for: indexPath) as? BackgroundImageCell
-      
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cellType), for: indexPath) as? TestingCell
+        
         return cell!
     }
     

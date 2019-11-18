@@ -95,7 +95,7 @@ class ChatPreviewCell: UICollectionViewCell {
         
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = ColorConfig.GrayText
+        line.backgroundColor = .clear
         
         return line
     }()

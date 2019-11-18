@@ -13,6 +13,8 @@
 		6116C671236CE64B00D72971 /* CollectionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116C670236CE64B00D72971 /* CollectionViewFactory.swift */; };
 		6116C673236CEC1900D72971 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116C672236CEC1900D72971 /* Setting.swift */; };
 		6116C675236CEC6800D72971 /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116C674236CEC6800D72971 /* Describable.swift */; };
+		613AEB7B2382B56A00A7EDBE /* BiddingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AEB7A2382B56A00A7EDBE /* BiddingCell.swift */; };
+		613AEB7D2382C74300A7EDBE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AEB7C2382C74300A7EDBE /* UILabel.swift */; };
 		61417B6E234DE3F100EAABDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61417B6D234DE3F100EAABDD /* AppDelegate.swift */; };
 		61417B75234DE40400EAABDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61417B74234DE40400EAABDD /* Assets.xcassets */; };
 		61417B78234DE40400EAABDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61417B76234DE40400EAABDD /* LaunchScreen.storyboard */; };
@@ -111,6 +113,8 @@
 		6116C670236CE64B00D72971 /* CollectionViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFactory.swift; sourceTree = "<group>"; };
 		6116C672236CEC1900D72971 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		6116C674236CEC6800D72971 /* Describable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Describable.swift; sourceTree = "<group>"; };
+		613AEB7A2382B56A00A7EDBE /* BiddingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiddingCell.swift; sourceTree = "<group>"; };
+		613AEB7C2382C74300A7EDBE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		61417B6A234DE3F100EAABDD /* Hyphen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyphen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61417B6D234DE3F100EAABDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61417B74234DE40400EAABDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				6116C66C236CE0A300D72971 /* TextCell.swift */,
 				6116C670236CE64B00D72971 /* CollectionViewFactory.swift */,
 				61D92BF1237AE3E90007861F /* ChatPreviewCell.swift */,
+				613AEB7A2382B56A00A7EDBE /* BiddingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 			children = (
 				6145DF2B235884AD006C2BF9 /* UIView.swift */,
 				617AF360235CE19A00EE7ADD /* UIButton.swift */,
+				613AEB7C2382C74300A7EDBE /* UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -947,6 +953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6141AC40237C03FF00CCD907 /* CountableText.swift in Sources */,
+				613AEB7B2382B56A00A7EDBE /* BiddingCell.swift in Sources */,
 				6145DEFF235549A5006C2BF9 /* ScrollingPageVC+Datasource.swift in Sources */,
 				6144B8C92372E7BB00800E7F /* CustomPagingView.swift in Sources */,
 				61C0E0CD2360D22D00D1145D /* DefaultCollectionModel.swift in Sources */,
@@ -1012,6 +1019,7 @@
 				61C0E0C82360CE0A00D1145D /* CellRenderer.swift in Sources */,
 				61C0E0F12362387F00D1145D /* RealEstateDetailFactory.swift in Sources */,
 				6198C9CB236B2958008A0AF9 /* SegmentedViewController.swift in Sources */,
+				613AEB7D2382C74300A7EDBE /* UILabel.swift in Sources */,
 				6145DF0123554D7F006C2BF9 /* ScrollingMenuPageViewController.swift in Sources */,
 				61C0E0FD23624F1500D1145D /* ModelFactory.swift in Sources */,
 				6145DF3723590D3B006C2BF9 /* MapView.swift in Sources */,
