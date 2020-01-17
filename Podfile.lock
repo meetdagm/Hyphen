@@ -1,24 +1,42 @@
 PODS:
   - Alamofire (4.8.2)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Cosmos (19.0.3)
+  - Kingfisher (5.7.0)
   - Mapbox-iOS-SDK (5.2.0)
+  - MaterialActivityIndicator (0.0.5)
   - Parchment (1.6.0)
 
 DEPENDENCIES:
   - Alamofire
+  - ChameleonFramework/Swift
+  - Cosmos
+  - Kingfisher
   - Mapbox-iOS-SDK (~> 5.1)
+  - MaterialActivityIndicator
   - Parchment
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ChameleonFramework
+    - Cosmos
+    - Kingfisher
     - Mapbox-iOS-SDK
+    - MaterialActivityIndicator
     - Parchment
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
+  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   Mapbox-iOS-SDK: 3e095b305126d52ba166fe215d847b15b6fbee63
+  MaterialActivityIndicator: b730766b32e800964025c4036b2b5e33a1f043cf
   Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
 
-PODFILE CHECKSUM: f5960badc5e23f5df24b619de3d09dd4db4f7bab
+PODFILE CHECKSUM: a07d086993ed8e1348cbcc36c8738f1da8e7a118
 
 COCOAPODS: 1.7.5

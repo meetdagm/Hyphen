@@ -20,6 +20,11 @@ class HotelCell: UICollectionViewCell, Shadowable {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tintView.backgroundColor = TintColor(frame)
+    }
+    
     let backgroundImageView: UIImageView = {
         
         let imageView = UIImageView()
@@ -55,7 +60,7 @@ class HotelCell: UICollectionViewCell, Shadowable {
         label.text = "The Roger"
         label.font = UIFont(name: FontConfig.demiBold, size: 18)
         label.textColor = .white
-        
+        label.numberOfLines = 0
         return label
     }()
     
@@ -96,21 +101,22 @@ class HotelCell: UICollectionViewCell, Shadowable {
         containerView.embedView(backgroundImageView)
         containerView.embedView(tintView)
         containerView.addSubview(originalPriceLabel)
-        containerView.addSubview(discountedPriceLabel)
+//        containerView.addSubview(discountedPriceLabel)
         containerView.addSubview(hotelName)
         containerView.addSubview(hotelDescription)
         
-        hotelDescription.bottomAnchor.constraint(equalTo: discountedPriceLabel.bottomAnchor).isActive = true
+        hotelDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9.0).isActive = true
         hotelDescription.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
         
         hotelName.bottomAnchor.constraint(equalTo: hotelDescription.topAnchor).isActive = true
         hotelName.leftAnchor.constraint(equalTo: hotelDescription.leftAnchor).isActive = true
+        hotelName.rightAnchor.constraint(equalTo: rightAnchor, constant: -12.0).isActive = true
         
-        discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9.0).isActive = true
-        discountedPriceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12.0).isActive = true
+//        discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9.0).isActive = true
+//        discountedPriceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12.0).isActive = true
         
-        originalPriceLabel.bottomAnchor.constraint(equalTo: discountedPriceLabel.topAnchor).isActive = true
-        originalPriceLabel.rightAnchor.constraint(equalTo: discountedPriceLabel.rightAnchor).isActive = true
+        originalPriceLabel.bottomAnchor.constraint(equalTo: hotelName.topAnchor).isActive = true
+        originalPriceLabel.leftAnchor.constraint(equalTo: hotelName.leftAnchor).isActive = true
         
     }
     

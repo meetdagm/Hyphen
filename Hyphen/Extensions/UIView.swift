@@ -45,4 +45,14 @@ extension UIView {
         return image
     }
     
+    func bounceAnimator() {
+        let params = UISpringTimingParameters(dampingRatio: 0.4)
+        let animator = UIViewPropertyAnimator(duration: 0.15, timingParameters: params)
+        animator.addAnimations {
+            self.transform = CGAffineTransform(scaleX: 2, y: 2)
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        animator.startAnimation()
+    }
+    
 }

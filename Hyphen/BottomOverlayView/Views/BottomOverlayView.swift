@@ -35,11 +35,11 @@ class BottomOverlayView: UIView {
     private func add(overlayView view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
-        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 220/812).isActive = true
         view.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         view.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        
+
     }
     
     

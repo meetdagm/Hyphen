@@ -33,7 +33,7 @@ class CardView: UIView, Shadowable {
        
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 2.0
+        view.layer.cornerRadius = 4.0
         view.layer.masksToBounds = true
         view.backgroundColor = .white
         return view

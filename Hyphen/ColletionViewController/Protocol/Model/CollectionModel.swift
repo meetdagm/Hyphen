@@ -18,3 +18,28 @@ protocol ReadableCollectionModel: CollectionModel {
     associatedtype Item
     func item(atIndexPath indexPath: IndexPath) -> Item
 }
+
+//Collection
+//class ReadableCollectionModel<Item>: CollectionModel {
+//    
+//    
+//    
+//    var itemCollection: [Item]
+//    
+//    var numberOfItems: Int {
+//        return itemCollection.count
+//    }
+//    
+//    init(withItems items: [Item]) {
+//        itemCollection = items
+//    }
+//    
+//    func loadItems(_ handler: @escaping () -> ()) {
+//        handler()
+//    }
+//    
+//    func item(atIndexPath indexPath: IndexPath) -> Item {
+//        return itemCollection[indexPath.row]
+//    }
+//    
+//}

@@ -12,11 +12,14 @@ protocol Shadowable { }
 
 extension Shadowable where Self: UIView {
     func addShadow() {
-        layer.cornerRadius = 12
-        layer.shadowColor = UIColor(red: 165/255, green: 165/255, blue: 165/255, alpha: 0.5).cgColor
-        layer.shadowOpacity = 1.0
-        layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        layer.shadowRadius = 10.0/2.0
+        layer.shadowColor = ColorConfig.shadowColor.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 0, height: 6.0)
+        layer.shadowRadius = 4.0
         layer.masksToBounds = false
+    }
+    
+    func removeShadow() {
+        layer.shadowOpacity = 0
     }
 }

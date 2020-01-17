@@ -10,5 +10,4 @@ import Foundation
 
 class Image {
     var backgroundImageName: String?
-    
 }

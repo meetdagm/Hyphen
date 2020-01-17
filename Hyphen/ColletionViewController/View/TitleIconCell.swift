@@ -25,6 +25,7 @@ class TitleIconCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named:IconConfig.moreArrow)
         
         return imageView
     }()
@@ -35,6 +36,7 @@ class TitleIconCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: FontConfig.regular, size: 13)
         label.textColor = .black
+        label.text = "Title"
         
         return label
     }()

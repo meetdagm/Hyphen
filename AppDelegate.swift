@@ -18,51 +18,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let backgroundColorController = BackgroundColorController()
+        backgroundColorController.addContraints = { mainView, topView in
+            mainView.backgroundColor = ColorConfig.lightGray
+            topView.backgroundColor = ColorConfig.black
+            topView.leftAnchor.constraint(equalTo: mainView.leftAnchor).isActive = true
+            topView.rightAnchor.constraint(equalTo: mainView.rightAnchor).isActive = true
+            topView.topAnchor.constraint(equalTo: mainView.topAnchor).isActive = true
+            topView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 1/3).isActive = true
+        }
+        
+        let homeGreetingController = TextViewController()
+        homeGreetingController.setText("Hello Dennice,\nHow can we help you today?")
+        homeGreetingController.setText(font: UIFont(name: FontConfig.demiBoldItalic, size: 22))
+        homeGreetingController.setText(color: .white)
+        
+        let homeFeedCollection = ModelFactory.makeHomeFeedCollection()
+        let homeCollectionViewController = CollectionViewController(withCollectionModel: homeFeedCollection, usingCellRenderer: HomeCellRenderer(withVCCollection: homeFeedCollection), usingCollectionView: CollectionViewFactory.getNormalCollectionView(inDirection: .vertical))
+        homeCollectionViewController.cellDimensionCalculator = CellSizeFactory.homeCellSelection
+        homeCollectionViewController.spacingBetweenItems = 22.0
+        homeCollectionViewController.spacingBetweenGroups = 26.0 //13.0 + 26.0 = 39.0
+        homeCollectionViewController.insetForCollectionView = UIEdgeInsets(top: 26.0, left: 0.0, bottom: 20.0, right: 0.0)
+        homeCollectionViewController.cellPresenter = HomeCellPresenter(withItemCollection: homeFeedCollection)
+        
+        homeCollectionViewController.view.backgroundColor = .clear
+        
+        let homeVerticalScrollStack = VerticalScrollStackController(withChildControllers: [homeGreetingController, homeCollectionViewController])
+        homeVerticalScrollStack.inset = UIEdgeInsets(top: 60.0, left: 26.0, bottom: 9.0, right: 26.0)
+        homeVerticalScrollStack.view.backgroundColor = .clear
+        
+        let homeOverlayController = ZAxisOverlayController(withChildControllers: [backgroundColorController, homeVerticalScrollStack])
+        homeOverlayController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: IconConfig.feed), tag: 0)
+        
         
         let realEstateModelCollection = ModelFactory.makeRealEstateModelCollection()
         let  bottomVC = MapViewController()
         bottomVC.filterController = FilterFactory.makeRealEstateFilter()
         
-        let overlayVC = CollectionViewController(withCollectionModel: realEstateModelCollection, usingCellRenderer: DefaultCellRenderer())
+        let overlayVC = CollectionViewController(withCollectionModel: realEstateModelCollection, usingCellRenderer: DefaultCellRenderer<BackgroundImageCell>())
         overlayVC.cellDimensionCalculator = CellSizeFactory.hPreviewDefault
         overlayVC.detailNavigator = DetailNavigator(usingDetailFactory: RealEstateDetailFactory(withRealEstateCollection: realEstateModelCollection))
         
         let vc1 = BottomOverlayViewController(withBottomVC: bottomVC, withOverlayVC: overlayVC)
         vc1.title = "Real Estate"
         
-        let hotelModelCollection = ModelFactory.makeHotelModelCollection()
-        let hotelMapVC = MapViewController()
-        hotelMapVC.filterController = FilterFactory.makeHotelFilter()
-        let hotelCollectionVC = CollectionViewController(withCollectionModel: hotelModelCollection, usingCellRenderer: HotelCellRenderer())
-        hotelCollectionVC.cellDimensionCalculator = CellSizeFactory.hPreviewDefault
-        hotelCollectionVC.detailNavigator = DetailNavigator(usingDetailFactory: HotelDetailFactory(withHotelCollection: hotelModelCollection))
         
-        let vc2 = BottomOverlayViewController(withBottomVC: hotelMapVC, withOverlayVC: hotelCollectionVC)
-        vc2.title = "Hotels"
         
         //Configure Flight Controller
-        let departureTextField = TextFieldViewController(withIcon: UIImage(named: IconConfig.location)!)
-        departureTextField.placeholder = "Add a departure location"
-        let arrivalTextField = TextFieldViewController(withIcon: UIImage(named: IconConfig.location)!)
-        arrivalTextField.placeholder = "Add a destination location"
-        let locationStackController = StackViewController(withChildrenVC: [departureTextField, arrivalTextField])
-        let locationCardView = CardViewController(withChildController: locationStackController)
         
-        let departureDatePicker = DatePickerViewController()
-        departureDatePicker.placeholder = "Add a departure date"
-        let returnDatePicker = DatePickerViewController()
-        returnDatePicker.placeholder = "Add a return date"
-        let dateStackController = StackViewController(withChildrenVC: [departureDatePicker, returnDatePicker])
-        let dateCardView = CardViewController(withChildController: dateStackController)
-        
-        let passengerAmountPicker = PickerViewController(usingIcon: UIImage(named: IconConfig.passenger)!, withPickerData: ["1 passenger, economy", "2 passengers, economy", "1 passenger, business", "2 passengers, business"])
-        let passengerAmountStackController = StackViewController(withChildrenVC: [passengerAmountPicker])
-        let passengerAmountCardView = CardViewController(withChildController: passengerAmountStackController)
-        
-        let searchFlightController = BottomButtonViewController(usingButtonTitle: "SEARCH FLIGHT", withTopViewController: VerticalScrollStackController(withChildControllers: [locationCardView, dateCardView, passengerAmountCardView]))
-        
-        let flightRootController = searchFlightController
-        
+        let flightRootController = ControllerFactory.makeFlightController()
 
         let vc3 = flightRootController
         vc3.title = "Flights"
@@ -101,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let movingViewController = BottomButtonViewController(usingButtonTitle: "REQUEST QUOTE", withTopViewController: VerticalScrollStackController(withChildControllers: [movingLocationCardView, movingDateCard, serviceTypeCard, roomsFilterController, notesCard]))
 
         
-        movingViewController.view.backgroundColor = .clear
+//        movingViewController.view.backgroundColor = .clear
         movingViewController.title = "House items"
         
         
@@ -117,6 +121,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         carDatePickerView.placeholder = "Pickup Date"                
         let carDatePickerStack = StackViewController(withChildrenVC: [carDatePickerView])
         let carDatePickerCard = CardViewController(withChildController: carDatePickerStack)
+        
+        // Request Car Make
+        
+        
         
         let carTypePickerView = PickerViewController(usingIcon: UIImage(named: IconConfig.car)!, withPickerData: ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen", "Dodge", "Ferrari", "Fiat", "Ford", "Geely", "General Motors", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Koenigsegg", "Lamborghini", "Land Rover", "Lexus", "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot", "Porsche", "Ram", "Renault", "Rolls Royce", "Saab", "Subaru", "Suzuki", "Tata Motors", "Tesla", "Toyota", "Volkswagen", "Volvo"])
         carTypePickerView.placeholder = "Car Type"
@@ -160,8 +168,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc5.title = "Car Shipping"
         vc5.view.backgroundColor = .red
         
-        let containerVC = CustomPagingViewController(withChildController: FixedPagingViewController(viewControllers: [vc1,vc2,vc3,vc4,vc5]))
-        containerVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: IconConfig.feed), tag: 0)
+        let containerVC = CustomPagingViewController(withChildController: FixedPagingViewController(viewControllers: [vc1,vc3,vc4,vc5]))
+        containerVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: IconConfig.profile), selectedImage: UIImage(named: IconConfig.profileSelected))
+//        UITabBarItem(title: "Home", image: UIImage(named: IconConfig.feed), selectedImage: UIImage(named: IconConfig.feedSelected))
         
         let biddingPreviewController = CollectionViewController(withCollectionModel: DefaultCollectionModel(), usingCellRenderer: DefaultCellRenderer<BiddingPreviewCell>(), usingCollectionView: CollectionViewFactory.getNormalCollectionView(inDirection: .vertical))
         biddingPreviewController.cellDimensionCalculator = CellSizeFactory.vBiddingPreviewCellSize
@@ -178,7 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let messagePreviewModel = ModelFactory.makeMessagePreviewList()
         
-        
         let messagesCollectionController = CollectionViewController(withCollectionModel: messagePreviewModel, usingCellRenderer: ChatPreviewCellRenderer(withItemCollection: messagePreviewModel), usingCollectionView: CollectionViewFactory.getNormalCollectionView(inDirection: .vertical))
         messagesCollectionController.cellDimensionCalculator = CellSizeFactory.vMessagePreviewCell
         messagesCollectionController.spacingBetweenItems = 3
@@ -188,7 +196,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         messagesController.inset = UIEdgeInsets(top: 0, left: 9, bottom: 10, right: 9)
         messagesController.view.backgroundColor = ColorConfig.lightGray
         messagesController.title = "Messages"
-        
         
         let messageNavigationController = NavigationControllerFactory.makeController(withRootController: messagesController)
         
@@ -208,9 +215,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profileController.view.backgroundColor = ColorConfig.lightGray
         
         let profileNavigationController = NavigationControllerFactory.makeController(withRootController: profileController)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: IconConfig.profile), tag: 3)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: IconConfig.profile), selectedImage: UIImage(named: IconConfig.profileSelected))
         
-        let tabBarController = TabBarController(withChildControllers: [containerVC, bidViewController, messageNavigationController, profileNavigationController])
+        let tabBarController = TabBarController(withChildControllers: [homeOverlayController, bidViewController, messageNavigationController, profileNavigationController]) //containerVC
+        
+        
+//        let authController = ControllerFactory.makeAuthControllerFactory()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

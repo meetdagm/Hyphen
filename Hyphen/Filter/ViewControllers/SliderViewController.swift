@@ -13,6 +13,7 @@ class SliderViewController: UIViewController {
     private let mainView = SliderView()
     private let sliderIncrementor: Int
     private var currentSliderValue: Float
+    var valueChanged: ((Float) -> Void)?
     
     init(withTitle title: String, 
          withMinValue minValue: Float = 0, 
@@ -54,6 +55,7 @@ class SliderViewController: UIViewController {
         if abs(sender.value - currentSliderValue) >= Float(sliderIncrementor) {
             currentSliderValue = sender.value - currentSliderValue > 0 ? currentSliderValue + Float(sliderIncrementor) : currentSliderValue - Float(sliderIncrementor)
             mainView.currentValue = currentSliderValue
+            valueChanged?(currentSliderValue)
         }
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ItemCollection<ItemType>: ReadableCollectionModel {
+class ItemCollection<ItemType>: CollectionModel {
   
     typealias Item = ItemType
     private var collection: [Item]
@@ -26,12 +26,22 @@ class ItemCollection<ItemType>: ReadableCollectionModel {
     }
     
     func loadItems(_ handler: @escaping () -> ()) {
-        print("Loading more items")
         handler()
     }
     
     func item(atIndexPath indexPath: IndexPath) -> Item {
         return collection[indexPath.row]
+    }
+    
+    //update current array of items
+    func updateCollection(with items: [Item]) {
+        collection.append(contentsOf: items)
+    }
+    
+    //overwrite current items of array 
+    func overwriteCollection(with items: [Item]) {
+        collection.removeAll()
+        updateCollection(with: items)
     }
     
 }

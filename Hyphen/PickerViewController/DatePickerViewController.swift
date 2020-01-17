@@ -10,17 +10,27 @@ import UIKit
 
 class DatePickerViewController: TextFieldViewController {
     
+    private var valueChanged: (Date) -> Void
+    
     private var selectedDate: Date? {
         didSet {
             if let date = selectedDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MMM d, yyyy, EEEE"
                 textField.text = dateFormatter.string(from: date)
+                valueChanged(date)
             }
         }
     }
     
-    init() {
+    convenience init() {
+        self.init { (date) in
+            print("Convenience Init")
+        }
+    }
+    
+    init(valueChangedHandler handler: @escaping(Date) -> Void) {
+        valueChanged = handler
         super.init(withIcon: UIImage(named: IconConfig.date)!)
     }
     
@@ -40,6 +50,7 @@ class DatePickerViewController: TextFieldViewController {
     
     private func configurePickerView() {
         textField.inputView = getDatePickerView()
+        textField.inputAccessoryView = configureToolBar()
         textField.delegate = self
         textField.tintColor = .clear
     }
@@ -56,6 +67,24 @@ class DatePickerViewController: TextFieldViewController {
     @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
     }
+    
+    private func configureToolBar() -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = false
+        toolBar.tintColor = .black
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        
+        return toolBar
+    }
+    
+    
+//    @objc private func closePicker() {
+//        textField.resignFirstResponder()
+//    }
     
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class BackgroundImageCell: UICollectionViewCell, Shadowable {
     
@@ -17,6 +18,11 @@ class BackgroundImageCell: UICollectionViewCell, Shadowable {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tintView.backgroundColor = TintColor(frame)
     }
     
     let backgroundImageView: UIImageView = {
@@ -76,7 +82,7 @@ class BackgroundImageCell: UICollectionViewCell, Shadowable {
        
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
         return view
     }()
     
@@ -85,7 +91,7 @@ class BackgroundImageCell: UICollectionViewCell, Shadowable {
         addShadow()
         embedView(containerView)
         containerView.embedView(backgroundImageView)
-        containerView.embedView(tintView)
+        containerView.embedView(tintView, usingEdgeInset: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
         containerView.addSubview(priceLabel)
         containerView.addSubview(featureLabel)
         containerView.addSubview(locationLabel)

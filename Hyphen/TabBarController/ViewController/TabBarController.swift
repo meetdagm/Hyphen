@@ -13,10 +13,10 @@ class TabBarController: UITabBarController {
     init(withChildControllers controllers: [UIViewController]) {
         super.init(nibName: nil, bundle: nil)
         viewControllers = controllers
-        UITabBar.appearance().tintColor = .black
-        UITabBar.appearance().unselectedItemTintColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = ColorConfig.black
+        UITabBar.appearance().unselectedItemTintColor = ColorConfig.black
         UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        UITabBar.appearance().backgroundColor = ColorConfig.lightGray
     }
     
     required init?(coder aDecoder: NSCoder) {

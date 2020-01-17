@@ -24,6 +24,7 @@ class ImageCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ContentConfig.defaultBackgroundImageCell)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()

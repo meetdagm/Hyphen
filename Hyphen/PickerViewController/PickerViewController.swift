@@ -10,16 +10,29 @@ import UIKit
 
 class PickerViewController: TextFieldViewController {
 
-    private let pickerData: [String]
+    private var pickerData: [String]
+    private var valueChanged: (String) -> Void
+    
     
     private var selectedData: String? {
         didSet {
-            textField.text = selectedData
+            if let data = selectedData {
+                textField.text = data
+                valueChanged(data)
+            }
         }
+    }
+    
+    convenience init(withValueChangedHandler handler: @escaping (String) -> Void, icon: UIImage, data: [String]) {
+        self.init(usingIcon: icon, withPickerData: data)
+        valueChanged = handler
     }
     
     init(usingIcon icon: UIImage, withPickerData data: [String]) {
         pickerData = data
+        valueChanged = { selectedText in
+            print(selectedText)
+        }
         super.init(withIcon: icon)
     }
     
@@ -30,10 +43,12 @@ class PickerViewController: TextFieldViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePickerView()
+        
     }
     
     private func configurePickerView() {
         textField.inputView = getPickerView()
+        textField.inputAccessoryView = configureToolBar()
         textField.delegate = self
         textField.tintColor = .clear
         selectedData = pickerData.first
@@ -49,6 +64,24 @@ class PickerViewController: TextFieldViewController {
         return pickerView
     }
     
+    private func configureToolBar() -> UIToolbar {
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = false
+        toolBar.tintColor = .black
+        toolBar.sizeToFit()
+      
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        
+        return toolBar
+    }
+
+    func setPicker(_ data: [String]) {
+        pickerData = data
+    }
 }
 
 extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {

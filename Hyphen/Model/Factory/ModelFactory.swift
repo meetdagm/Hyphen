@@ -80,4 +80,17 @@ class ModelFactory {
             MessagePreview(name: "LG Delivery", chatPreview: "Hello Dennise, we moved your Rolls Royce to the back of the garage..."),
             ])
     }
+    
+    
+    static func makeHomeFeedCollection() -> ItemCollection<HomeItem> {
+        return ItemCollection(withCollection: [
+            HomeItem(withTitle: "Real Estate", withIcon: IconConfig.house, usingController: ControllerFactory.makeRealEstateFilterController()),
+            HomeItem(withTitle: "Hotel", withIcon: IconConfig.bed, usingController: ControllerFactory.makeHotelFilterController()),
+            HomeItem(withTitle: "Flights", withIcon: IconConfig.airPlane, usingController: ControllerFactory.makeFlightController()),
+            HomeItem(withTitle: "Shipping", withIcon: IconConfig.shipping, usingController: ControllerFactory.makeShippingController()),
+            HomeItem(withTitle: "Car Shipping", withIcon: IconConfig.car, usingController: ControllerFactory.makeCarShippingController())
+        ])
+    }
 }
+
+

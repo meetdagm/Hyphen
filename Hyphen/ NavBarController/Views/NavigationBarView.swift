@@ -10,6 +10,8 @@ import UIKit
 
 class NavigationBarView: UIView {
     
+    var overlay = false
+    
     var bottomView: UIView? {
         didSet {
             if let view = bottomView {
@@ -54,7 +56,7 @@ class NavigationBarView: UIView {
         label.textColor = .black
         label.font = UIFont(name: FontConfig.demiBold, size: 16)
         
-        return label
+        return label 
     }()
     
     let rightBarButtonItem: UIButton = {
@@ -72,6 +74,8 @@ class NavigationBarView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: IconConfig.backArrow), for: .normal)
+        button.imageView?.image?.withRenderingMode(.alwaysTemplate)
+        button.imageView?.tintColor = .black
         
         return button
     }()
@@ -79,7 +83,13 @@ class NavigationBarView: UIView {
     private func addToContainer(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
-        view.topAnchor.constraint(equalTo: navBarView.bottomAnchor, constant: 11).isActive = true
+        if overlay {
+            view.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            bringSubviewToFront(navBarView)
+        }else {
+            view.topAnchor.constraint(equalTo: navBarView.bottomAnchor, constant: 22).isActive = true
+        }
+        
         view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         view.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         view.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -87,16 +97,16 @@ class NavigationBarView: UIView {
     
     private func setupView() {
         
-        backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        backgroundColor = ColorConfig.lightGray
         addSubview(navBarView)
         navBarView.addSubview(navBarTitle)
         navBarView.addSubview(rightBarButtonItem)
         navBarView.addSubview(backButton)
         
         navBarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 6).isActive = true
-        navBarView.leftAnchor.constraint(equalTo: leftAnchor, constant: 6.0).isActive = true
-        navBarView.rightAnchor.constraint(equalTo: rightAnchor, constant: -6.0).isActive = true
-        navBarView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        navBarView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12.0).isActive = true
+        navBarView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12.0).isActive = true
+        navBarView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         navBarTitle.centerXAnchor.constraint(equalTo: navBarView.centerXAnchor).isActive = true
         navBarTitle.centerYAnchor.constraint(equalTo: navBarView.centerYAnchor).isActive = true

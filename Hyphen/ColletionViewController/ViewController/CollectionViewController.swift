@@ -12,13 +12,16 @@ import UIKit
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let mainView: CollectionView
-    private let collectionModel: CollectionModel
+    private var collectionModel: CollectionModel
     private let cellRenderer: CellRenderer
     var detailNavigator: DetailNavigator?
-    
+    var cellPresenter: CellPresenter?
+    var cellSelector: CellSelector?
     var spacingBetweenItems: CGFloat = 30
-    var insetForCollectionView = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+    var spacingBetweenGroups: CGFloat = 30
+    var insetForCollectionView: UIEdgeInsets = .zero
     var cellDimensionCalculator = CellSizeFactory.hPreviewDefault
+    var numberOfSections = 1
     
     var isPagingEnabled = false {
         didSet {
@@ -56,6 +59,10 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         mainView.register(cell: cellRenderer.cellType)
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return numberOfSections
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionModel.numberOfItems
     }    
@@ -69,16 +76,23 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        detailNavigator?.presentItem(atIndexPath: indexPath, overViewController: self)
+        cellPresenter?.presentDetail(forItemAt: indexPath, overContext: self)
+        cellSelector?.didSelectCell(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return spacingBetweenItems
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        print("Group spacing set as: \(spacingBetweenGroups)!!!!! ")
+        return spacingBetweenGroups
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return insetForCollectionView
     }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
@@ -95,5 +109,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             self?.mainView.reloadCollectionView()
         }
     }
+    
+    
+    func update(_ collectionModel: CollectionModel) {
+        self.collectionModel = collectionModel
+        self.mainView.reloadCollectionView()
+    }
+    
+    
     
 }

@@ -9,4 +9,8 @@ target 'Hyphen' do
 	pod 'Mapbox-iOS-SDK', '~> 5.1'
 	pod 'Parchment'
 	pod 'Alamofire'
+	pod 'Kingfisher'
+	pod 'MaterialActivityIndicator'
+	pod 'ChameleonFramework/Swift'
+	pod 'Cosmos'
 end

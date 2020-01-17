@@ -10,12 +10,23 @@ import UIKit
 
 struct CellSizeFactory {
     
+    static var smallCell: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return CGSize(width: 70, height: 25)
+        })
+    }
+    
     static var hPreviewDefault: CellDimensionCalculator {
-        return CellSizeMultiplier(withWidthMultiplier: 1/1.625, withHeightMultiplier: 0.9)
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return CGSize(width: collectionView.frame.width * 0.6, height: 150)
+        })
     }
     
     static var fullSize: CellDimensionCalculator {
-        return CellSizeMultiplier(withWidthMultiplier: 1.0, withHeightMultiplier: 1.0)
+        
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return collectionView.frame.size
+        })
     }
     
     static var vPreviewDefault: CellDimensionCalculator {
@@ -48,4 +59,16 @@ struct CellSizeFactory {
         })
     }
     
+    static var vFlightPreviewCellSize: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            return CGSize(width: collectionView.frame.width, height: 100)
+        })
+    }
+    
+    static var homeCellSelection: CellDimensionCalculator {
+        return StaticCellSizeCalculator(withSizeComputer: { (collectionView) -> CGSize in
+            let dimension = (collectionView.frame.width / 2) - 13
+            return CGSize(width: dimension, height: dimension)
+        })
+    }
 }

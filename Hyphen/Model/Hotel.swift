@@ -24,3 +24,47 @@ class Hotel: Image {
     }
     
 }
+
+protocol Imageable {
+    var imageURL: URL { get }
+}
+
+class ImageInfo: Codable {
+    var url: String
+}
+
+class ImageData: Codable {
+    var medium: ImageInfo
+    var large: ImageInfo
+}
+
+class PhotoData: Codable {
+    var images: ImageData
+}
+
+class HotelModel: Codable, Imageable, Locationable {
+   
+    var name: String
+    var location_id: String
+    var latitude: String
+    var longitude: String
+    var price: String
+    var photo: PhotoData
+    
+    var imageURL: URL {
+        return URL(string: photo.images.medium.url)!
+    }
+    
+    var long: Double {
+        return Double(longitude) ?? 0.0
+    }
+    
+    var lat: Double {
+        return Double(latitude) ?? 0.0
+    }
+    
+}
+
+class HotelList: Codable {
+    var data: [HotelModel]
+}

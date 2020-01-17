@@ -50,7 +50,7 @@ class VerticalScrollStackView: UIView {
     }()
     
     private func setupView() {
-        backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+//        backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         addSubview(vScrollView)
         vScrollView.addSubview(vStackView)
         

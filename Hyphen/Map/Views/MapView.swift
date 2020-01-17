@@ -29,24 +29,6 @@ class MapView: UIView {
         super.layoutIfNeeded()
         setupView()
     }
-    
-    let filterButton: UIButton = {
-       
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 16.0
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1.0
-        button.setTitle("FILTER", for: .normal)
-        button.setImage(UIImage(named: IconConfig.filter), for: .normal)
-        button.titleLabel?.font = UIFont(name: FontConfig.demiBold, size: 12)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-        print(button.intrinsicContentSize.width)
-        
-        return button
-    }()
 
     
     let map: MGLMapView = {
@@ -60,10 +42,5 @@ class MapView: UIView {
     
     private func setupView() {
         embedView(map)
-        addSubview(filterButton)
-        filterButton.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        filterButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        filterButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
-        filterButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
     }
 }

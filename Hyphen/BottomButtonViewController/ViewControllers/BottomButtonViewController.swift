@@ -10,8 +10,23 @@ import UIKit
 
 
 class BottomButtonViewController: UIViewController {
+    
     private let mainView = BottomButtonView()
+    private let loadingView = LoadingViewController()
     private let topViewController: UIViewController
+    var handler: (() -> Void)?
+    
+    var textColor: UIColor = .white {
+        didSet {
+            mainView.bottomButton.setTitleColor(textColor, for: .normal)
+        }
+    }
+    
+    var backgroundColor: UIColor = .black {
+        didSet {
+            mainView.bottomButton.backgroundColor = backgroundColor
+        }
+    }
     
     init(usingButtonTitle title: String, withTopViewController controller: UIViewController) {
         topViewController = controller
@@ -43,12 +58,28 @@ class BottomButtonViewController: UIViewController {
         topViewController.didMove(toParent: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = mainView.bottomButton.backgroundColor
+    }
+    
     private func setupTarget() {
         mainView.bottomButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
     }
     
     @objc private func buttonPressed() {
-        print("Button pressed")
+        if let actionHandler = handler {
+            actionHandler()
+        }
+    }
+    
+    func startSpinner() -> Void {
+        loadingView.startAnimation(onTopOf: self)
+    }
+    
+    func stopSpinner() -> Void {
+        loadingView.stopAnimation()
     }
     
 }

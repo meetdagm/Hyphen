@@ -10,14 +10,16 @@ import UIKit
 
 class NavigationControllerFactory {
     
-    static func makeController(withRootController controller: UIViewController, withBarColor color: UIColor = ColorConfig.lightGray) -> UINavigationController {
+    static func makeController(withRootController controller: UIViewController, withBarColor color: UIColor = ColorConfig.lightGray, isLargeTitle: Bool = true) -> UINavigationController {
+
         let navController = UINavigationController(rootViewController: controller)
-        navController.navigationBar.prefersLargeTitles = true
-        navController.navigationBar.tintColor = color
+        navController.navigationBar.prefersLargeTitles = isLargeTitle
         navController.navigationBar.backgroundColor = color
         navController.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         navController.navigationBar.isTranslucent = false
         navController.view.backgroundColor = color
+        
         return navController
     }
+    
 }

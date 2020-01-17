@@ -12,10 +12,18 @@ import UIKit
 class VerticalScrollStackController: UIViewController {
     
     let mainView = VerticalScrollStackView()
+    
     let childVCS: [UIViewController]
+    
     var inset: UIEdgeInsets = .zero {
         didSet {
             mainView.margins = inset
+        }
+    }
+    
+    var isScrolling: Bool = true {
+        didSet {
+            mainView.vScrollView.alwaysBounceVertical = isScrolling
         }
     }
     

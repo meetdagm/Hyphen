@@ -33,7 +33,7 @@ class BottomButtonView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Title", for: .normal)
-        button.backgroundColor = .black
+        button.backgroundColor = ColorConfig.black
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: FontConfig.medium, size: 16)
         

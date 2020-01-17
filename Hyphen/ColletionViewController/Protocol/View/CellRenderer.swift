@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol CellRenderer {
+@objc protocol CellRenderer {
     var cellType: UICollectionViewCell.Type { get }
     func cellForItem(atIndexPath indexPath: IndexPath, fromCollectionView collectionView: UICollectionView) -> UICollectionViewCell 
 }

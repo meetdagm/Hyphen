@@ -14,6 +14,11 @@ class NavBarController: UIViewController {
     private let viewController: UIViewController
     typealias Handler = ()->()
     var rightButtonHandler:  Handler?
+    var overlay = false {
+        didSet {
+            mainView.overlay = overlay
+        }
+    }
     
     init(withViewController controller: UIViewController, withTitle title: String, titleForRightBarButton rightButtonTitle: String = "") {
         viewController = controller
@@ -61,6 +66,12 @@ class NavBarController: UIViewController {
     
     private func dismissController() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func clearBackground() {
+        mainView.navBarView.backgroundColor = .clear
+        mainView.navBarView.removeShadow()
+        mainView.backButton.imageView?.tintColor = .white
     }
     
 }

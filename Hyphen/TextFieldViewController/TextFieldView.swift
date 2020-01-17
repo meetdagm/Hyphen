@@ -59,7 +59,7 @@ class TextFieldView: UIView {
         textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -18).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
+
     }
     
 }

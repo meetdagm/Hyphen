@@ -12,7 +12,7 @@ class StackViewController: UIViewController {
     
     private let childrenVCs: [UIViewController]
     private let stackView = UIStackView()
-    var layoutMargins = UIEdgeInsets(top: 9.0, left: 36.0, bottom: 9.0, right: 18.0)
+    var layoutMargins = UIEdgeInsets(top: 9.0, left: 18.0, bottom: 9.0, right: 18.0)
     
     init(withChildrenVC controllers: [UIViewController]) {
         childrenVCs = controllers
